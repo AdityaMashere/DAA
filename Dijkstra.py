@@ -1,6 +1,5 @@
 import heapq
 
-
 def network_delay_time(times, N, K):
     # Create a graph from the times input
     graph = {i: [] for i in range(1, N + 1)}
@@ -30,9 +29,10 @@ def network_delay_time(times, N, K):
                 heapq.heappush(min_heap, (time, neighbor))
     
     # Find the maximum time to reach any node
-    max_time = max(distance.values())
+
+    #max_time = max(distance.values())
     
-    return max_time if max_time < float('inf') else -1
+    return distance
 
 # Accept user input
 N = int(input("Enter the number of nodes: "))
@@ -47,4 +47,11 @@ for _ in range(M):
 K = int(input("Enter the starting node (K): "))
 
 result = network_delay_time(times, N, K)
-print("The time taken for the signal to reach all nodes:", result)  
+print("Shortest distances from source:")
+for i in range(N):
+    print(f"Node {i + 1}: {result[i+1]}")
+
+max_dist = max(result.values())
+print("The time taken for the signal to reach all nodes:", max_dist)  
+
+
